@@ -6,7 +6,7 @@ Depending on which operation you need to perform, create your document model and
 Depending on your serialization method you may need to prepend the xml header and/or the cXML Document Type Definition.
 
 Example (not valid cXml, requires )
-`
+```csharp
     var xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>";
     var cXmlVersion = "1.2.044";
     var cXmlDTD = $"http://xml.cXML.org/schemas/cXML/{cXmlVersion}/InvoiceDetail.dtd";
@@ -118,7 +118,7 @@ Example (not valid cXml, requires )
     };
 
     result = SerializeHelper.SerializeString<InvoiceDetailRequest>(ref request, out success, xmlHeader, cXmlDTD);
-`
+```
 
 Note:
 If you receive an error that the endpoint is not available, you may need to run Visual Studio as Administrator.
