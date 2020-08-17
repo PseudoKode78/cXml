@@ -5,7 +5,7 @@ The code presented in this repository has been successfully used in an eCommerce
 Depending on which operation you need to perform, create your document model and serialize.
 Depending on your serialization method you may need to prepend the xml header and/or the cXML Document Type Definition.
 
-Example (not valid cXml, requires )
+Example (not valid cXml, requires additional fields):
 ```csharp
 var xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?>";
 var cXmlVersion = "1.2.044";
@@ -47,15 +47,23 @@ var request = new InvoiceDetailRequest() {
 						new Contact() {
 							role = "shipFrom",
 							Name = new Name(SupplierName, "en"),
-							PostalAddress = new PostalAddress(SupplierName, ShipFromAddressStreet, ShipFromAddressCity, null, ShipFromAddressPostCode, null) {
-								Country = new Country(GetISOCountryCode(ShipFromAddressCountry), ShipFromAddressCountry)
+							PostalAddress = new PostalAddress(SupplierName,
+								ShipFromAddressStreet,
+								ShipFromAddressCity, null,
+									ShipFromAddressPostCode, null) {
+								Country = new Country(
+									GetISOCountryCode(ShipFromAddressCountry),
+														ShipFromAddressCountry)
 							}
 						},
 						new Contact() {
 							role = "shipTo",
 							Name = new Name(shipTo, "en"),
-							PostalAddress = new PostalAddress(shipName, shipAddressStreet, shipCity, null, shipPostCode, null) {
-								Country = new Country(GetISOCountryCode(shipCountry), shipCountry)
+							PostalAddress = new PostalAddress(shipName,
+								shipAddressStreet,
+								shipCity, null, shipPostCode, null) {
+								Country = new Country(
+									GetISOCountryCode(shipCountry), shipCountry)
 							}
 						}
 					}
@@ -89,7 +97,10 @@ var request = new InvoiceDetailRequest() {
 					Money = new Money(currencycode, Math.Abs(subtotal))
 				},
 				Tax = new Tax() {
-					Money = new Money(currencycode, Math.Abs(vatAmount)) { alternateAmount = Math.Abs(vatAmount), alternateCurrency = currencycode },
+					Money = new Money(currencycode, Math.Abs(vatAmount)) { 
+						alternateAmount = Math.Abs(vatAmount),
+						alternateCurrency = currencycode
+					},
 					Description = new Description("Total Tax", "en"),
 					TaxDetail = new TaxDetail() {
 						purpose = "tax",
@@ -120,5 +131,6 @@ var request = new InvoiceDetailRequest() {
 result = SerializeHelper.SerializeString<InvoiceDetailRequest>(ref request, out success, xmlHeader, cXmlDTD);
 ```
 
-Note:
-If you receive an error that the endpoint is not available, you may need to run Visual Studio as Administrator.
+Please Note:
+If you receive an error that the endpoint is not available duging debug then you may need to run Visual Studio as Administrator.
+This is a known issue when connecting to API endpoints with Visual Studio.
