@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>fc99111b-d4ae-4c2f-aedf-db76644e6141</UserSecretsId>
     <RepositoryUrl>https://github.com/PseudoKode78/cxml.git</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <Description>cXML Models for C#</Description>
